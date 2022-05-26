@@ -1,0 +1,54 @@
+{{#partial "content" }}
+    <div class="container-md">
+        <h1>Add Source</h1>
+        <form method="post" action="/source/add">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" required class="form-control" name="name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Hostname</label>
+                <input type="text" required class="form-control" name="hostname" value="localhost" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Port</label>
+                <input type="text" required pattern="[0-9]+" class="form-control" name="port" value="9006" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" required class="form-control" name="username" value="user1" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" required class="form-control" name="password" value="test" />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Source</button>
+        </form>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>URL</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each sources}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{hostname}}:{{port}}</td>
+                    <td>
+                        <a href="/source/{{@key}}/view" class="btn btn-primary">View</a>
+                        <form action="/source/{{@key}}/remove" method="post">
+                            <button class="btn btn-danger" type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{/partial}}
+
+{{> base}}

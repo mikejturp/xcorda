@@ -1,0 +1,46 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url 'https://software.r3.com/artifactory/corda-releases' }
+	}
+
+	dependencies {
+		classpath "net.corda.plugins:cordformation:5.0.12"
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+
+}
+
+group = 'com.xcorda'
+version = '1.0'
+
+targetCompatibility = '1.8'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "net.corda:corda-rpc:4.9"
+	implementation "co.paralleluniverse:quasar-core:0.8.0"
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'com.github.jknack:handlebars:4.3.0'
+	implementation 'com.github.jknack:handlebars-springmvc:4.3.0'
+	implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.4'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
